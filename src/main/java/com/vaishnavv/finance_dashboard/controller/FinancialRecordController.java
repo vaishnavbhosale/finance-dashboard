@@ -1,9 +1,11 @@
 package com.vaishnavv.finance_dashboard.controller;
 
+import com.vaishnavv.finance_dashboard.model.FinanceType;
 import com.vaishnavv.finance_dashboard.model.FinancialRecord;
 import com.vaishnavv.finance_dashboard.service.FinancialRecordService;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -23,8 +25,12 @@ public class FinancialRecordController {
     }
 
     @GetMapping
-    public List<FinancialRecord> getAllRecords() {
-        return financialRecordService.getAllRecords();
+    public List<FinancialRecord> getRecords(
+            @RequestParam(required = false) FinanceType type,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) LocalDate date) {
+
+        return financialRecordService.getFilteredRecords(type, category, date);
     }
 
     @GetMapping("/user/{userId}")
@@ -37,4 +43,5 @@ public class FinancialRecordController {
         financialRecordService.deleteRecord(id);
         return "Record deleted successfully";
     }
+
 }

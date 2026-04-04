@@ -1,11 +1,13 @@
 package com.vaishnavv.finance_dashboard.service;
 
+import com.vaishnavv.finance_dashboard.model.FinanceType;
 import com.vaishnavv.finance_dashboard.model.FinancialRecord;
 import com.vaishnavv.finance_dashboard.model.User;
 import com.vaishnavv.finance_dashboard.repository.FinancialRecordRepository;
 import com.vaishnavv.finance_dashboard.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -41,6 +43,22 @@ public class FinancialRecordService {
 
     public List<FinancialRecord> getAllRecords() {
         return financialRecordRepository.findAll();
+    }
+
+    public List<FinancialRecord> getFilteredRecords(FinanceType type, String category, LocalDate date) {
+        if (type != null) {
+            return financialRecordRepository.findByType(type);
+        }
+
+        else if (category != null && !category.isEmpty()) {
+            return financialRecordRepository.findByCategory(category);
+        }
+        else if (date != null) {
+            return financialRecordRepository.findByDate(date);
+        }
+        else {
+            return financialRecordRepository.findAll();
+        }
     }
 
 
