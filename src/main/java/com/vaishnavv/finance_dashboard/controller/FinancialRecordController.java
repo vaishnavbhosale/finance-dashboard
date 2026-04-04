@@ -18,14 +18,14 @@ public class FinancialRecordController {
         this.financialRecordService = financialRecordService;
     }
 
-    // 🔥 CREATE (ADMIN)
+    // CREATE (ADMIN)
     @PostMapping("/{userId}")
     public FinancialRecord createRecord(@PathVariable Long userId,
                                         @RequestBody FinancialRecord financialRecord) {
         return financialRecordService.createRecord(userId, financialRecord);
     }
 
-    // 🔥 GET (ANALYST + ADMIN)
+    // GET (ANALYST + ADMIN)
     @GetMapping
     public List<FinancialRecord> getRecords(
             @RequestParam Long userId,
@@ -36,13 +36,13 @@ public class FinancialRecordController {
         return financialRecordService.getFilteredRecords(userId, type, category, date);
     }
 
-    // 🔥 GET BY USER
+    // GET BY USER
     @GetMapping("/user/{userId}")
     public List<FinancialRecord> getAllRecordsByUser(@PathVariable Long userId) {
         return financialRecordService.getRecordsByUserId(userId);
     }
 
-    // 🔥 UPDATE (ADMIN)
+    // UPDATE (ADMIN)
     @PutMapping("/{userId}/{id}")
     public FinancialRecord updateRecord(@PathVariable Long userId,
                                         @PathVariable Long id,
@@ -50,7 +50,7 @@ public class FinancialRecordController {
         return financialRecordService.updateRecord(userId, id, financialRecord);
     }
 
-    // 🔥 DELETE (ADMIN)
+    // DELETE (ADMIN)
     @DeleteMapping("/{userId}/{id}")
     public String deleteRecord(@PathVariable Long userId,
                                @PathVariable Long id) {

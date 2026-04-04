@@ -18,13 +18,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    //    @PostMapping
-//    @PreAuthorize("hasRole('ADMIN')")
-//    public User createUser(@Valid @RequestBody User user) {
-//        return userService.createUser(user);
-//    } check whether to add this or not in project after wards
-
-    @PostMapping
+ @PostMapping
     public User createUser(@Valid @RequestBody User user) {
         return userService.createUser(user);
     }

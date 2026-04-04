@@ -33,13 +33,11 @@ public class FinancialRecordService {
 
     // CREATE > ADMIN only
     public FinancialRecord createRecord(Long userId, FinancialRecord record) {
-
         User user = getUser(userId);
 
         if (user.getRole() != Role.ADMIN) {
             throw new ResourceNotFound("Only ADMIN can create records");
         }
-
         record.setUser(user);
         return financialRecordRepository.save(record);
     }
@@ -90,7 +88,7 @@ public class FinancialRecordService {
         User user = getUser(userId);
 
         if (user.getRole() == Role.USER) {
-            throw new ResourceNotFound("VIEWER cannot access records");
+            throw new ResourceNotFound("USERS cannot access records");
         }
 
         if (type != null) {
