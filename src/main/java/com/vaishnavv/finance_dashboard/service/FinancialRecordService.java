@@ -1,11 +1,13 @@
 package com.vaishnavv.finance_dashboard.service;
 
+import com.vaishnavv.finance_dashboard.dto.DashboardSummary;
 import com.vaishnavv.finance_dashboard.model.FinanceType;
 import com.vaishnavv.finance_dashboard.model.FinancialRecord;
 import com.vaishnavv.finance_dashboard.model.User;
 import com.vaishnavv.finance_dashboard.repository.FinancialRecordRepository;
 import com.vaishnavv.finance_dashboard.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -59,6 +61,28 @@ public class FinancialRecordService {
         else {
             return financialRecordRepository.findAll();
         }
+    }
+
+
+    public DashboardSummary getDashboardSummary() {
+        List<FinancialRecord> financialRecords = financialRecordRepository.findAll();
+
+        double totalIncome = 0;
+        double totalExpense = 0;
+
+        for (FinancialRecord record : financialRecords) {
+            if (record.getType() == FinanceType.INCOME) {
+                totalIncome += record.getAmount();
+
+            }
+            else if (record.getType() == FinanceType.EXPENSE) {
+                totalExpense += record.getAmount();
+            }
+        }
+
+        double balance = totalIncome - totalExpense;
+
+        return new DashboardSummary(totalIncome, totalExpense, balance);
     }
 
 
