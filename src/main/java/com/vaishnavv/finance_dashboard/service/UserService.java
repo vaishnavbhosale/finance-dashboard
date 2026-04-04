@@ -1,5 +1,6 @@
 package com.vaishnavv.finance_dashboard.service;
 
+import com.vaishnavv.finance_dashboard.ExceptionHandler.ResourceNotFound;
 import com.vaishnavv.finance_dashboard.model.Role;
 import com.vaishnavv.finance_dashboard.model.User;
 import com.vaishnavv.finance_dashboard.repository.UserRepository;
@@ -26,12 +27,12 @@ public class UserService {
 
     public User getUserById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFound("User not found"));
     }
 
     public User updateUserRole(Long id, Role role) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFound("User not found"));
 
         user.setRole(role);
         return userRepository.save(user);
