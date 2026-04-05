@@ -9,6 +9,7 @@ It demonstrates:
 * REST API design
 * Role-based access control
 * Data processing & aggregation
+* Automated Documentation: Fully integrated Swagger UI for interactive API testing
 * Backend architecture (Controller → Service → Repository)
 * Deployment using Docker & Render
 
@@ -16,19 +17,13 @@ It demonstrates:
 
 ## 🛠 Tech Stack
 
-* Java 21
-* Spring Boot
-* Spring Data JPA
-* H2 Database
-* Maven
-* Docker
-* Render (Deployment)
-
----
-
-## 🌍 Live API
-
-👉 https://finance-dashboard-1-qmp4.onrender.com
+* Language: Java 21
+* Framework: Spring Boot
+* ORM: Spring Data JPA
+* Database: H2 Database
+* Documentation: SpringDoc OpenAPI (Swagger UI
+* Build Tool: Maven
+* Deployment: Docker & Render
 
 ---
 
@@ -58,9 +53,11 @@ POST /users
   "role": "ADMIN",
   "status": "ACTIVE"
 }
+
 ```
 
----
+PUT /users/{id}/role - Update a user's permissions.
+
 
 ### 🔹 Financial Records APIs
 
@@ -99,7 +96,13 @@ Response:
   "balance": 4800
 }
 ```
+##📖 Interactive API Documentation
 
+This project uses Swagger UI. Once the application is running, you can test all endpoints directly from your browser:
+
+🔗 Local: http://localhost:8080/swagger-ui/index.html
+
+🔗 Live: https://finance-dashboard-1-qmp4.onrender.com/swagger-ui/index.html
 ---
 
 ## 🔐 Access Control
