@@ -52,8 +52,9 @@ POST /users
 
 ```json
 {
-  "name": "Vaishnav",
-  "email": "vaishnav@email.com",
+  "firstname": "Vaishnav",
+  "lastname": "Bhosale",
+  "email": "vaishnavBhosale@email.com",
   "role": "ADMIN",
   "status": "ACTIVE"
 }
