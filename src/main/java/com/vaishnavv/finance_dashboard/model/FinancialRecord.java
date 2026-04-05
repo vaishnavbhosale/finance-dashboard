@@ -37,6 +37,7 @@ public class FinancialRecord {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
+    //@com.fasterxml.jackson.annotation.JsonIgnore // <--- ADD THIS LINE
 
 
 
